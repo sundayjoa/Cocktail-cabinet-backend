@@ -15,14 +15,21 @@ import com.example.cocktail_cabinet.dto.ResponseDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Slf4j
 @RestController
 @RequestMapping("/auth")
 public class UserController{
 	@Autowired
 	private UserService userService;
+	
 	@Autowired
 	private TokenProvider tokenProvider;
+	
+	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 	
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO){
@@ -59,7 +66,8 @@ public class UserController{
 	public ResponseEntity<?> authenticate(@RequestBody UserDTO userDTO){
 		UserEntity user = userService.getByCredentials(
 				userDTO.getUserId(), 
-				userDTO.getPassword());
+				userDTO.getPassword(),
+				passwordEncoder);
 		
 		if(user != null) {
 			//토큰 생성

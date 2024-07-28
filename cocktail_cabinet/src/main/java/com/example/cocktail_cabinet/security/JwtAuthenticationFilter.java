@@ -33,13 +33,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		try {
 			String token = parseBearerToken(request);
 			log.info("Filter is running...");
+			log.info("Token: " + token);
 			//토큰 검사하기
 			if (token != null && !token.equalsIgnoreCase("null")) {
-				String userId = tokenProvider.validateAndGetUserId(token);
-				log.info("Authenticated user ID: " + userId);
+				
+				String ExtractuserId = tokenProvider.validateAndExtractUserId(token);
+				log.info("Authenticated user ID: " + ExtractuserId);
 				//인증 완료
 				AbstractAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-						userId,
+						ExtractuserId,
 						null,
 						AuthorityUtils.NO_AUTHORITIES
 						);
