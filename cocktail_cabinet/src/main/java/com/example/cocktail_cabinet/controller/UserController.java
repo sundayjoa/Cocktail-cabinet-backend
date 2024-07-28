@@ -42,7 +42,7 @@ public class UserController{
 			UserEntity user = UserEntity.builder()
 					.userId(userDTO.getUserId())
 					.username(userDTO.getUsername())
-					.password(userDTO.getPassword())
+					.password(passwordEncoder.encode(userDTO.getPassword()))
 					.build();
 			
 			//repository에 유저 저장
