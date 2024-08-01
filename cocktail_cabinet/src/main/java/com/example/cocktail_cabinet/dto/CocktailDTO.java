@@ -19,4 +19,5 @@ public class CocktailDTO {
 	private String Glassware;
 	private String preparation;
 	private String Notes;
+	private Long id;
 }

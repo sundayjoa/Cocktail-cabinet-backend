@@ -34,4 +34,6 @@ public class CocktailEntity {
 	 
 	private String Notes;
 	
+	private Long id;
+	
 }

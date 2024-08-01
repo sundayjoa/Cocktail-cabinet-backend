@@ -35,6 +35,7 @@ public class CocktailService {
 				.Glassware(cocktail.getGlassware())
 				.preparation(cocktail.getPreparation())
 				.Notes(cocktail.getNotes())
+				.id(cocktail.getId())
 				.build();
 	}
 }
