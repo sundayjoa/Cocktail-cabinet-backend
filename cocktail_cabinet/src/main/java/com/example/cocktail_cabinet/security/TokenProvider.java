@@ -42,7 +42,7 @@ public class TokenProvider{
 	public String create(UserEntity userEntity) {
 		Date expiryDate = Date.from(
 				Instant.now()
-					.plus(1, ChronoUnit.DAYS));
+					.plus(365, ChronoUnit.DAYS));
 		
 		String token = Jwts.builder()
 				.signWith(SignatureAlgorithm.HS512, SECRET_KEY)
